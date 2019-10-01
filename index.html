@@ -13,12 +13,14 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
     
     <title>Using jQuery Validator for your Form Validation</title>
   </head>
   <body>
 
-      <div class="dynamicDiv" id="dd.0.0.1"><div class="bg-gray d-flex align-items-center position-relative h-lg-650p p-lg-0 py-5" id="form-hero">
+      <div class="dynamicDiv" id="dd.0.0.1">
+        <div class="bg-gray d-flex align-items-center position-relative h-lg-650p p-lg-0 py-5" id="form-hero">
           <img alt="Solo Planet" class="position-absolute top-0 right-0 pt-5 d-none d-lg-block" src="images/planet.png">
           <div class="d-none d-lg-block position-absolute bottom-0 left-0 pointer">
             <img alt="Solonauts" class="w-350p image-always-show" src="images/Rocket_CodeMonkey_Up.png"> 
@@ -33,7 +35,7 @@
               </div>
               <div class="mt-4 mt-lg-0 col-lg-5 col-xl-4 ml-lg-auto mr-lg-0 mx-auto">
                 <section class="float-right p-4 w-100 w-lg-350p w-xl-400p hero-form bg-midnight text-white">
-                                <form action="/join-now/" data-toggle="validator" enctype="multipart/form-data" id="top-signup-form" method="post" novalidate="novalidate">
+                          <form action="/join-now/" data-toggle="validator" enctype="multipart/form-data" id="top-signup-form" method="post" novalidate="novalidate">
                       <div class="form-group pb-2">
                         <label for="firstName">First name <span class="text-coral">*</span></label> 
                         <input aria-label="Sign Up First Name" class="form-control border-top-1 border-left-1 border-right-1" id="firstName" name="firstName" placeholder="Type your first name" required="required" type="text" data-kwimpalastatus="alive" data-kwimpalaid="1569934474905-2">
@@ -64,197 +66,42 @@
         </div>
           
         <script>
-          let timeout = null;
-          
-          $('#join_email').on('keyup change', function (e) {
-            clearTimeout(timeout);
-            
-            timeout = setTimeout(function() {
-              if (!!e.currentTarget.value) {
-                $.ajax({
-                  url: "/join/check-email.json",
-                  data: {
-                    value: e.currentTarget.value
-                  },
-                  type: "GET",
-                  success: function (response) {
-                    if (!response.isAvailable) {
-                      $('#join_email').addClass("error");
-                      $('#join_email_error').text('This email is already taken.').addClass('d-block');
-                    }
-                    if (response.isAvailable) {
-                      $('#join_email').removeClass('error');
-                      $('#join_email_error').removeClass('d-block');
-                    }
-                  }
-                });
-              }
-            }, 500);
-          });
-          
-          $(document).ready(function(){
-            jQuery.validator.addMethod('username_rule', function(value, element) {
-              if (/^[a-zA-Z0-9_-]+$/.test(value)) {
-                return true;
-              } else {
-                return false;
-              };
-            });
-            jQuery.validator.addMethod('email_rule', function(value, element) {
-              if (/^([a-zA-Z0-9_\-\.]+)\+?([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(value)) {
-                return true;
-              } else {
-                return false;
-              };
-            });
-            jQuery.validator.addMethod('password_rule', function(value, element) {
-              if (/^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+*!=])(?=.*[0-9]).*$/.test(value)) {
-                return true;
-              } else {
-                return false;
-              };
-            }, 'It must be at least 8 characters long including one uppercase letter, one special character and alphanumeric characters.');
-            $('#top-signup-form').validate({
-              rules: {
-                'join[name]': {
-                  required: true,
-                  username_rule: true
-                },
-                'join[email]': {
-                  required: true,
-                  email_rule: true
-                },
-                'join[password]': {
-                  password_rule: true,
-                  required: true
-                },
-                'firstName': {
-                  required: true,
-                },
-                'lastName': {
-                  required: true,
-                },
-              },
-              messages: {
-                'join[name]': "Username can only be alphanumeric.",
-                'join[email]': "Please enter a valid email address.",
-                'join[password]': "It must be at least 8 characters long including one uppercase letter, one special character and alphanumeric characters.",
-                'firstName': "Please type your first name.",
-                'lastName': "Please type your last name.",
-              }
-            });
-          });
-        </script></div>
-          
-        <script>
-          let timeout = null;
-          $('#join_name').on('keyup change', function(e) {
-            clearTimeout(timeout);
-            
-            timeout = setTimeout(function() {
-              if (!!e.currentTarget.value) {
-                $.ajax({
-                  url: "/join/check-username.json",
-                  data: {
-                    value: e.currentTarget.value
-                  },
-                  type: "GET",
-                  success: function (response) {
-                    if (!response.isAvailable) {
-                      $('#join_name').addClass("error");
-                      $('#join_name_error').text('This username is already taken.').addClass('d-block');
-                    }
-                    if (response.isAvailable) {
-                      $('#join_name').removeClass('error');
-                      $('#join_name_error').removeClass('d-block');
-                    }
-                  }
-                });
-              }
-            }, 500);
-          });
-          $('#join_email').on('keyup change', function (e) {
-            clearTimeout(timeout);
-            
-            timeout = setTimeout(function() {
-              if (!!e.currentTarget.value) {
-                $.ajax({
-                  url: "/join/check-email.json",
-                  data: {
-                    value: e.currentTarget.value
-                  },
-                  type: "GET",
-                  success: function (response) {
-                    if (!response.isAvailable) {
-                      $('#join_email').addClass("error");
-                      $('#join_email_error').text('This email is already taken.').addClass('d-block');
-                    }
-                    if (response.isAvailable) {
-                      $('#join_email').removeClass('error');
-                      $('#join_email_error').removeClass('d-block');
-                    }
-                  }
-                });
-              }
-            }, 500);
-          });
-          $(document).ready(function(){
-            jQuery.validator.addMethod('username_rule', function(value, element) {
-              if (/^[a-zA-Z0-9_-]+$/.test(value)) {
-                return true;
-              } else {
-                return false;
-              };
-            });
-            jQuery.validator.addMethod('email_rule', function(value, element) {
-              if (/^([a-zA-Z0-9_\-\.]+)\+?([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(value)) {
-                return true;
-              } else {
-                return false;
-              };
-            });
-            jQuery.validator.addMethod('password_rule', function(value, element) {
-              if (/^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+*!=])(?=.*[0-9]).*$/.test(value)) {
-                return true;
-              } else {
-                return false;
-              };
-            }, 'It must be at least 8 characters long including one uppercase letter, one special character and alphanumeric characters.');
-            $('#top-signup-form').validate({
-              rules: {
-                'join[name]': {
-                  required: true,
-                  username_rule: true
-                },
-                'join[email]': {
-                  required: true,
-                  email_rule: true
-                },
-                'join[password]': {
-                  password_rule: true,
-                  required: true
-                },
-                'firstName': {
-                  required: true,
-                },
-                'lastName': {
-                  required: true,
-                },
-              },
-              messages: {
-                'join[name]': "Username can only be alphanumeric.",
-                'join[email]': "Please enter a valid email address.",
-                'join[password]': "It must be at least 8 characters long including one uppercase letter, one special character and alphanumeric characters.",
-                'firstName': "Please type your first name.",
-                'lastName': "Please type your last name.",
-              }
-            });
-          });
-        </script>
+            $(document).ready(function(){
+              jQuery.validator.addMethod('username_rule', function(value, element) {
+                if (/^[a-zA-Z0-9_-]+$/.test(value)) {
+                  return true;
+                } else {
+                  return false;
+                };
+              });
+              jQuery.validator.addMethod('email_rule', function(value, element) {
+                if (/^([a-zA-Z0-9_\-\.]+)\+?([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(value)) {
+                  return true;
+                } else {
+                  return false;
+                };
+              });
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+              $('#top-signup-form').validate({
+                rules: {
+                  'join[email]': {
+                    required: true,
+                    email_rule: true
+                  },
+                  'firstName': {
+                    required: true,
+                  },
+                  'lastName': {
+                    required: true,
+                  },
+                },
+                messages: {
+                  'join[email]': "Please enter a valid email address.",
+                  'firstName': "Please type your first name.",
+                  'lastName': "Please type your last name."
+                }
+              });
+            });
+          </script>
   </body>
 </html>
