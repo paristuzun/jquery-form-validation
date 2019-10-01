@@ -1,0 +1,238 @@
+body {
+    font-family: Inter,proxima-nova,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+    color: #363636;
+    padding-top: 110px;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+#form-hero {
+    background: url(images/homepage-landscape-small.png) left bottom/cover no-repeat;
+}
+@media (min-width: 992px) {
+html .h-lg-650p {
+    height: 650px!important;
+}
+}
+@media (min-width: 991px) {
+html .h-lg-650p {
+    height: 650px!important;
+}
+}
+@media (min-width: 992px) {
+.p-lg-0 {
+    padding: 0!important;
+}
+}
+.pb-5, .py-5 {
+    padding-bottom: 3rem!important;
+}
+.pt-5, .py-5 {
+    padding-top: 3rem!important;
+}
+.position-relative {
+    position: relative!important;
+}
+.align-items-center {
+    align-items: center!important;
+}
+.d-flex {
+    display: flex!important;
+}
+.bg-gray {
+    background-color: #363636!important;
+}
+
+.right-0 {
+    right: 0!important;
+}
+.top-0 {
+    top: 0!important;
+}
+.pt-5, .py-5 {
+    padding-top: 3rem!important;
+}
+.position-absolute {
+    position: absolute!important;
+}
+@media (min-width: 992px) {
+.d-lg-block {
+    display: block!important;
+}
+}
+
+@media (min-width: 1200px)
+.container {
+    max-width: 1370px;
+}
+@media (min-width: 992px)
+.container {
+    max-width: 960px;
+}
+@media (min-width: 768px)
+.container {
+    max-width: 720px;
+}
+@media (min-width: 576px)
+.container {
+    max-width: 540px;
+}
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+@media (min-width: 1200px) {
+html .w-xl-400p {
+    width: 400px!important;
+}
+}
+
+@media (min-width: 992px) {
+html .w-lg-350p {
+    width: 350px!important;
+}
+}
+
+@media (min-width: 1200px) {
+html .w-xl-400p {
+    width: 400px!important;
+}
+} 
+
+@media (min-width: 991px) {
+html .w-lg-350p {
+    width: 350px!important;
+}
+}
+.p-4 {
+    padding: 1.5rem!important;
+}
+
+.w-100 {
+    width: 100%!important;
+}
+.float-right {
+    float: right!important;
+}
+
+.bg-midnight {
+    background-color: #23303f!important;
+}
+.text-white {
+    color: #fff!important;
+}
+section {
+    overflow: hidden;
+}
+
+label {
+    font-size: .85rem;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+#bottom-signup-form input.form-control, #top-signup-form input.form-control {
+    background-color: #4a5360;
+    border-color: #8792a3;
+    color: #fff;
+}
+.form-control {
+    border-radius: 2px;
+    height: calc(1.5em + 1rem + 2px);
+    padding-left: 1rem;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#bottom-signup-form label.error, #top-signup-form label.error {
+    position: absolute;
+    color: #ff8282;
+}
+
+.btn {
+    border-radius: 0;
+}
+#top-signup-form label.error {
+    font-size: .78rem;
+    line-height: 1.25;
+    padding-top: 4px;
+    color: #ff8282;
+}
+label.error {
+    color: #fe0000;
+    margin-bottom: 0;
+}
+label {
+    font-size: .85rem;
+    font-weight: 500;
+}
+
+#bottom-signup-form label.error, #top-signup-form label.error {
+    position: absolute;
+    color: #ff8282;
+}
+#top-signup-form label.error {
+    font-size: .78rem;
+    line-height: 1.25;
+    padding-top: 4px;
+    color: #ff8282;
+}
+label.error {
+    color: #fe0000;
+    margin-bottom: 0;
+}
+label {
+    font-size: .85rem;
+    font-weight: 500;
+}
+
+.w-350p {
+    width: 350px!important;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.pointer {
+    cursor: pointer;
+}
+.left-0 {
+    left: 0!important;
+}
+.bottom-0 {
+    bottom: 0!important;
+}
+.position-absolute {
+    position: absolute!important;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 1.05rem;
+    }
+    }
+
+    @media (min-width: 992px) {
+    html .h-lg-650p {
+        height: 650px!important;
+    }    
+}
